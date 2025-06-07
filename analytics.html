@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Analytics - Language School</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f7f9fc;
+    }
+    .header {
+      background: linear-gradient(135deg, #007bff, #00c6ff);
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+    }
+    .chart-card {
+      background-color: white;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+    }
+    footer {
+      background-color: #343a40;
+      color: #fff;
+      text-align: center;
+      padding: 20px 0;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">Language School</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="aboutus.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="crud.html">Student Form</a></li>
+          <li class="nav-item"><a class="nav-link active" href="analytics.html">Analytics</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <header class="header animate__animated animate__fadeInDown">
+    <div class="container">
+      <h1>Student Enrollment Analytics</h1>
+      <p class="lead">Visual representation of current student registrations by language.</p>
+    </div>
+  </header>
+
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+          <div class="chart-card animate__animated animate__fadeInUp">
+            <canvas id="myChart" height="100"></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <p class="mb-0">&copy; 2025 Language School | Student Analytics Dashboard</p>
+    </div>
+  </footer>
+
+  <script>
+    function loadChartData() {
+      const stats = getEnrollmentStats();
+      const labels = Object.keys(stats);
+      const values = Object.values(stats);
+
+      if (labels.length === 0) {
+        document.getElementById('myChart').parentElement.innerHTML +=
+          `<p class="text-muted text-center mt-3">No student data available. Please register students first.</p>`;
+        return;
+      }
+
+      const ctx = document.getElementById('myChart').getContext('2d');
+      new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [{
+            label: 'Students per Language',
+            data: values,
+            backgroundColor: 'rgba(75, 192, 192, 0.5)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: { beginAtZero: true }
+          }
+        }
+      });
+    }
+
+    window.onload = loadChartData;
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
