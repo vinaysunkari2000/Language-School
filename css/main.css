@@ -8,8 +8,8 @@ html {
 }
 
 .header {
-  background: linear-gradient(135deg, #007bff, #00c6ff);
-  color: white;
+  
+  color: rgba(19, 1, 1, 0.963);
   padding: 80px 20px;
   text-align: center;
 }
@@ -81,3 +81,35 @@ footer {
   color: red;
   text-decoration: none;
 }
+#cardResults {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  margin-top: 30px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+/* Background for What We Offer Page */
+.what-we-offer-bg {
+  background: url('img/foreign-language.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+/* Floating effect */
+.hover-float {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hover-float:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+.text-shadow {
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #007bff, #00c6ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
